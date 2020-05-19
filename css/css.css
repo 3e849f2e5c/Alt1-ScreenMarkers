@@ -1,0 +1,125 @@
+.button
+{
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 4px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 6px;
+    transition-duration: 0.1s;
+    cursor: pointer;
+    font-family: 'trajan-pro-3';
+    text-shadow: 1px 1px 2px #ECC622;
+    font-size: 18px;
+}
+
+.button1
+{
+    border: 2px solid #4CAF50;
+}
+
+.button3
+{
+    border: 2px solid cyan;
+    background-color: transparent;
+    color: white;
+    padding: 1px 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition-duration: 0.1s;
+    cursor: pointer;
+    font-family: 'trajan-pro-3';
+    text-shadow: 1px 1px 2px #ECC622;
+}
+
+.button3:hover
+{
+    background-color: cyan;
+    color: black;
+}
+
+.button1:hover
+{
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button2
+{
+    border: 2px solid #f44336;
+}
+
+.button2:hover
+{
+    background-color: #f44336;
+    color: white;
+}
+
+.labelT
+{
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    margin: 4px;
+}
+
+.overlayList
+{
+    height: 20px;
+    padding: 4px;
+    background-color: lightgray;
+    border: groove #000000;
+    margin-top: 2px;
+}
+
+.menuadds
+{
+    background-color: rgba(200,200,200,0.8);
+    border: outset #323232;
+    margin: 4px 4px 4px 4px;
+    height: 200px;
+    z-index: 10;
+}
+
+.menuie
+{
+    background-color: rgba(200,200,200,0.8);
+    border: outset #323232;
+    margin: 4px 4px 4px 4px;
+    height: 50px;
+    z-index: 10;
+}
+
+.colorInput
+{
+    width:52px;
+}
+
+.buttonAC
+{
+    margin-top: 4px;
+}
+
+.colorInput1
+{
+    width:52px;
+    margin: 10px 0px 0px 30px;
+}
+
+.menuline
+{
+    background-color: rgba(200,200,200,0.6);
+}
+
+.menunumselect
+{
+    width: 48px;
+    margin: 4px;
+}
+
+.menurect
+{
+    background-color: rgba(200,200,200,0.6);
+}

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="nis/nis.css">
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+
+    <!-- Scripts -->
+    <script type="text/javascript" src="js/alt1lib.js"></script>
+    <script type="text/javascript" src="js/runeappslib.js"></script>
+    <script type="text/javascript" src="js/aneko/markers.js"></script>
+
+</head>
+
+<body class="nis" onload="start()">
+
+<div style="background-image: url('alt1-currentskin/background.png');">
+    <div id="btnRect" class="button1 button" onclick="buttonFuncRect()">Rect</div>
+    <div class="button3" onclick="buttonFuncIE()">i/e</div>
+    <div id="btnLine" class="button2 button" onclick="buttonFuncLine()">Line</div>
+</div>
+
+<div style="position: absolute;" id="menu-root">
+
+    <div id="inputexport" class="menuie" hidden>
+        <div>
+            <input id="IEField" style="width: 244px" type="text">
+        </div>
+        <div>
+            <button onclick="exportToString();" style="margin-left: 44px;" class="buttonAC">Export</button>
+            <button onclick="cancel();" class="buttonAC">Close</button>
+            <button onclick="applyImport()" class="buttonAC">Import</button>
+        </div>
+    </div>
+
+    <div id="menu-rect" class="menuadds menurect" hidden>
+        <div>
+            <label class="labelT">Y:</label>
+            <input id="yInput" value=0 type="number" class="menunumselect" title="Y Position">
+            <label class="labelT">Width:</label>
+            <input value=0 id="WidthInput" type="number" class="menunumselect" title="Width">
+        </div>
+        <div>
+            <label class="labelT">X:</label>
+            <input value=0 id="xInput" type="number" class="menunumselect" title="X Position">
+            <label class="labelT">Height:</label>
+            <input value=0 id="HeightInput" type="number" style="margin-left: -0.1px" class="menunumselect"
+                   title="Height">
+        </div>
+        <div>
+            <input id="colorRed" min="0" max="255" type="range" class="colorInput1" oninput="changeColor();"
+                   title="Red">
+            <input id="colorGreen" min="0" max="255" type="range" class="colorInput" oninput="changeColor();"
+                   title="Green">
+            <input id="colorBlue" min="0" max="255" type="range" class="colorInput" oninput="changeColor();"
+                   title="Blue">
+        </div>
+        <div>
+            <label class="labelT" style="margin-left: 80px">Thickness:</label>
+            <input id="lineWidth" min="0" max="10" type="range" style="margin-left: 50px" title="Thickness">
+        </div>
+        <div>
+            <input id="name" placeholder="Name" type="text" align=""
+                   style="margin-left: 31px; margin-top: 8px; text-align: center">
+        </div>
+        <div>
+            <button id="button1" onclick="addRectBtn();"
+                    style="margin-left: 28px; padding-left: 16px; padding-right: 16px" class="buttonAC">Add
+            </button>
+            <button id="button2" onclick="setarea();">Mouse</button>
+            <button id="button3" onclick="cancel();" class="buttonAC">Cancel</button>
+        </div>
+    </div>
+
+    <div id="menu-line" class="menuadds menuline" hidden>
+        <div>
+            <label class="labelT">Y:</label>
+            <input id="yInput2" value=0 type="number" class="menunumselect" title="First Y Position">
+            <label class="labelT">X2:</label>
+            <input value=0 id="x2Input" type="number" class="menunumselect" title="Second X Position">
+        </div>
+        <div>
+            <label class="labelT">X:</label>
+            <input value=0 id="xInput2" type="number" class="menunumselect" title="First X Position">
+            <label class="labelT">Y2:</label>
+            <input value=0 id="y2Input" type="number" style="margin-left: 4px" class="menunumselect"
+                   title="Second Y Position">
+        </div>
+        <div>
+            <input id="colorRed2" min="0" max="255" type="range" class="colorInput1" oninput="changeColor2();"
+                   title="Red">
+            <input id="colorGreen2" min="0" max="255" type="range" class="colorInput" oninput="changeColor2();"
+                   title="Green">
+            <input id="colorBlue2" min="0" max="255" type="range" class="colorInput" oninput="changeColor2();"
+                   title="Blue">
+        </div>
+        <div>
+            <label class="labelT" style="margin-left: 80px">Thickness:</label>
+            <input id="lineWidth2" min="0" max="10" type="range" style="margin-left: 50px" title="Line Width">
+        </div>
+        <div>
+            <input id="name2" placeholder="Name" type="text" align=""
+                   style="margin-left: 31px; margin-top: 8px; text-align: center">
+        </div>
+        <div>
+            <button id="button4" onclick="addLineBtn();"
+                    style="margin-left: 28px; padding-left: 16px; padding-right: 16px" class="buttonAC">Add
+            </button>
+            <button id="button5" onclick="setarea();">Mouse</button>
+            <button id="button6" onclick="cancel();" class="buttonAC">Cancel</button>
+        </div>
+    </div>
+
+    <div id="edit-rect" class="menuadds menurect" hidden>
+        <div>
+            <label class="labelT">Y:</label>
+            <input onkeydown="if(event.keyCode==13){saveRect();}" id="yInputE" value=0 type="number"
+                   class="menunumselect" title="Y Position">
+            <label class="labelT">Width:</label>
+            <input onkeydown="if(event.keyCode==13){saveRect();}" value=0 id="WidthInputE" type="number"
+                   class="menunumselect" title="Width">
+        </div>
+        <div>
+            <label class="labelT">X:</label>
+            <input onkeydown="if(event.keyCode==13){saveRect();}" value=0 id="xInputE" type="number"
+                   class="menunumselect" title="X Position">
+            <label class="labelT">Height:</label>
+            <input onkeydown="if(event.keyCode==13){saveRect();}" value=0 id="HeightInputE" type="number"
+                   style="margin-left: -0.1px" class="menunumselect" title="Height">
+        </div>
+        <div>
+            <input id="colorRedE" min="0" max="255" type="range" class="colorInput1" oninput="changeColorE();"
+                   title="Red">
+            <input id="colorGreenE" min="0" max="255" type="range" class="colorInput" oninput="changeColorE();"
+                   title="Green">
+            <input id="colorBlueE" min="0" max="255" type="range" class="colorInput" oninput="changeColorE();"
+                   title="Blue">
+        </div>
+        <div>
+            <label class="labelT" style="margin-left: 80px">Thickness:</label>
+            <input id="lineWidthE" min="0" max="10" type="range" style="margin-left: 50px" title="Line Width">
+        </div>
+        <div>
+            <input id="nameE" disabled placeholder="Name" type="text" align=""
+                   style="margin-left: 31px; margin-top: 8px; text-align: center">
+        </div>
+        <div>
+            <button id="button7" onclick="saveRect()" style="margin-left: 28px; padding-left: 16px; padding-right: 16px"
+                    class="buttonAC">Save
+            </button>
+            <button id="button8" onclick="setarea();">Mouse</button>
+            <button id="button9" onclick="cancel();" class="buttonAC">Close</button>
+        </div>
+    </div>
+
+    <div id="edit-line" class="menuadds menuline" hidden>
+        <div>
+            <label class="labelT">Y:</label>
+            <input onkeydown="if(event.keyCode==13){saveLine();}" id="yInputE2" value=0 type="number"
+                   class="menunumselect" title="First Y Position">
+            <label class="labelT">X2:</label>
+            <input onkeydown="if(event.keyCode==13){saveLine();}" value=0 id="WidthInputE2" type="number"
+                   class="menunumselect" title="Second X Position">
+        </div>
+        <div>
+            <label class="labelT">X:</label>
+            <input onkeydown="if(event.keyCode==13){saveLine();}" value=0 id="xInputE2" type="number"
+                   class="menunumselect" title="First X Position">
+            <label class="labelT">Y2:</label>
+            <input onkeydown="if(event.keyCode==13){saveLine();}" value=0 id="HeightInputE2" type="number"
+                   style="margin-left: 4px" class="menunumselect" title="Second Y Position">
+        </div>
+        <div>
+            <input id="colorRedE2" min="0" max="255" type="range" class="colorInput1" oninput="changeColorE2();"
+                   title="Red">
+            <input id="colorGreenE2" min="0" max="255" type="range" class="colorInput" oninput="changeColorE2();"
+                   title="Green">
+            <input id="colorBlueE2" min="0" max="255" type="range" class="colorInput" oninput="changeColorE2();"
+                   title="Blue">
+        </div>
+        <div>
+            <label class="labelT" style="margin-left: 80px">Thickness:</label>
+            <input id="lineWidthE2" min="0" max="10" type="range" style="margin-left: 50px" title="Line Width">
+        </div>
+        <div>
+            <input id="nameE2" disabled placeholder="Name" type="text" align=""
+                   style="margin-left: 31px; margin-top: 8px; text-align: center">
+        </div>
+        <div>
+            <button id="button10" onclick="saveLine()"
+                    style="margin-left: 28px; padding-left: 16px; padding-right: 16px" class="buttonAC">Save
+            </button>
+            <button id="button11" onclick="setarea();">Mouse</button>
+            <button id="button12" onclick="cancel();" class="buttonAC">Close</button>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="nisseperator">
+</div>
+<div id="overList" style="z-index:-1; color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;">
+</div>
+
+</body>
+</html>
